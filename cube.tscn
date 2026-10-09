@@ -7,3 +7,15 @@
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=234855030]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1854844, 0, 0)
 mesh = SubResource("BoxMesh_vrt1y")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1710036443]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28926945, 0, 0)
+mesh = SubResource("BoxMesh_vrt1y")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D2" unique_id=865978326]
+transform = Transform3D(1, 0, 0, 0, 0.9998405, 0.01785952, 0, -0.01785952, 0.9998405, 0.97856927, 1.0738988, 0)
+mesh = SubResource("BoxMesh_vrt1y")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D2/MeshInstance3D" unique_id=99336227]
+transform = Transform3D(1, 0, 0, 0, 1.0000002, 0, 0, 0, 1.0000002, -0.035830975, 1.0494504, 0.01874567)
+mesh = SubResource("BoxMesh_vrt1y")
