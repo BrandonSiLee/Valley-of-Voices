@@ -31,5 +31,7 @@ This is **Brandon's first game**, made in **Godot 4.7.2** with **GDScript**. Bra
 ## The Obsidian vault (Brandon's second brain)
 - Lives at `C:\VALLEY OF VOICES`. Its own rules are in `C:\VALLEY OF VOICES\CLAUDE.md`.
 - **Every script has a mirror page** at `C:\VALLEY OF VOICES\wiki\2 Building It\Code\<same path as res://>\<file>.gd.md`, with: What it does · How it connects · Ideas you'll learn · Walkthrough · Try this · Full code · Change history · Brandon's notes / questions.
+- **Always keep the vault up to date, in every session, as part of the work** (Brandon's rule): code mirrors, design pages, decisions, changelog, log. There is no separate "sync" step; never leave it for later.
+- When you add, change or remove a skill in `.claude/skills/`, update `wiki\4 Learning\My Skills.md` in the same session.
 - When you create or change a script, update its mirror page and `Code Index.md` in the same session. If the vault folder isn't accessible, ask Brandon to add it (`/add-dir "C:\VALLEY OF VOICES"`).
 - Never rename vault page files (it breaks links).
