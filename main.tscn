@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://cn341te63l6we"]
+[gd_scene format=3 uid="uid://t8xl4uycvtyh"]
 
-[ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://addons/proto_controller/proto_controller.tscn" id="1_jbd7x"]
+[ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://addons/proto_controller/proto_controller.tscn" id="1_ig7tw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xc3wn"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -46,5 +46,5 @@ operation = 2
 radius = 6.168457
 height = 5.635742
 
-[node name="ProtoController" parent="." unique_id=941013398 instance=ExtResource("1_jbd7x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.10857, 0.14500761, 0.4180045)
+[node name="ProtoController" parent="." unique_id=941013398 instance=ExtResource("1_ig7tw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.10857, 0.14500761, 8.455975)
