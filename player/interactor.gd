@@ -7,7 +7,7 @@ extends Node
 ## "use" means; this script only finds what you're looking at.
 ## Also draws a small dot in the middle of the screen so you can aim.
 ## Put this node as a child of the player.
-## Vault: wiki/11 Code/player/interactor.gd
+## Vault: wiki/2 Building It/Code/player/interactor.gd
 
 ## How far you can reach, in metres.
 @export var reach := 2.5

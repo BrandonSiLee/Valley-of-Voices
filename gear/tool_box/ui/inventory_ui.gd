@@ -7,7 +7,7 @@ extends Control
 ##
 ## Layout (built in code below so every piece is explained):
 ##   [ HANDS / BELT ]   [ INVENTORY: 6x4 grid + red drop hatch ]   [ inspection bay ]
-## Vault: wiki/11 Code/gear/tool_box/ui/inventory_ui.gd
+## Vault: wiki/2 Building It/Code/gear/tool_box/ui/inventory_ui.gd
 
 const CELL := 56   # size of one grid cell, in pixels
 

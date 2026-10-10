@@ -3,7 +3,7 @@ extends Control
 ## The 6 x 4 grid inside the box.
 ## Draws the compartments, holds one ItemView per item, and accepts dropped
 ## items, showing a GREEN outline where an item fits and RED where it doesn't.
-## Vault: wiki/11 Code/gear/tool_box/ui/box_grid.gd
+## Vault: wiki/2 Building It/Code/gear/tool_box/ui/box_grid.gd
 
 var ui: InventoryUI
 

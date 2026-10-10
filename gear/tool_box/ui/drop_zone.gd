@@ -1,7 +1,7 @@
 class_name DropZone
 extends Control
 ## The red hatch under the grid. Drop a tool here to set it on the ground.
-## Vault: wiki/11 Code/gear/tool_box/ui/drop_zone.gd
+## Vault: wiki/2 Building It/Code/gear/tool_box/ui/drop_zone.gd
 
 var ui: InventoryUI
 var _hover := false

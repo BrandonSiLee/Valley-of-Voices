@@ -7,7 +7,7 @@ extends Control
 ##   1. The thing you grab answers _get_drag_data(): "here's what you're carrying".
 ##   2. Whatever is under the mouse is asked _can_drop_data(): "would you accept it?"
 ##   3. On release, that thing's _drop_data() is called.
-## Vault: wiki/11 Code/gear/tool_box/ui/item_view.gd
+## Vault: wiki/2 Building It/Code/gear/tool_box/ui/item_view.gd
 
 var ui: InventoryUI
 var item: ItemData

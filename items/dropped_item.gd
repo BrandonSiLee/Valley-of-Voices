@@ -5,7 +5,7 @@ extends RigidBody3D
 ## It has an interact(player) function, so the player's Interactor can use it.
 ## (Same pattern as the lamp in the vault page "Giving Assets Behavior".)
 ## RigidBody3D = physics moves it, so it falls and tumbles when dropped.
-## Vault: wiki/11 Code/items/dropped_item.gd
+## Vault: wiki/2 Building It/Code/items/dropped_item.gd
 
 ## How big one inventory cell is in the world, for the placeholder box.
 const CELL_METERS := 0.12

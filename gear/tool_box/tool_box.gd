@@ -11,7 +11,7 @@ extends Node3D
 ##
 ## This script handles the 3D box, the animation and the player's controls.
 ## The inventory RULES are in inventory.gd and the SCREEN is in ui/inventory_ui.gd.
-## Vault: wiki/11 Code/gear/tool_box/tool_box.gd
+## Vault: wiki/2 Building It/Code/gear/tool_box/tool_box.gd
 
 signal opened
 signal closed

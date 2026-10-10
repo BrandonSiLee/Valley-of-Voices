@@ -4,7 +4,7 @@ extends Node
 ## HOW TO RUN: open tests/inventory_test.tscn and press F6.
 ## Look at the Output panel: every line should say PASS.
 ## If you ever change inventory.gd, run this again to make sure nothing broke.
-## Vault: wiki/11 Code/tests/inventory_test.gd
+## Vault: wiki/2 Building It/Code/tests/inventory_test.gd
 
 var _passed := 0
 var _failed := 0
