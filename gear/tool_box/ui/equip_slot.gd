@@ -3,7 +3,7 @@ extends Control
 ## One square slot: your HANDS, or one of the 3 BELT slots.
 ## Looks like a recessed steel well. Shows the item in it and accepts drops
 ## (if it's taken, the inventory swaps the two items).
-## Vault: wiki/11 Code/gear/tool_box/ui/equip_slot.gd
+## Vault: wiki/2 Building It/Code/gear/tool_box/ui/equip_slot.gd
 
 const SLOT_SIZE := Vector2(84, 84)
 

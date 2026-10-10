@@ -5,7 +5,7 @@ extends Resource
 ## A Resource is a data file. For every tool in the game we make one .tres
 ## file (right-click a folder > New Resource > ItemData) and fill these
 ## values in the Inspector. Scripts never hard-code item stats; they read them
-## from these files. Vault: wiki/11 Code/items/item_data.gd
+## from these files. Vault: wiki/2 Building It/Code/items/item_data.gd
 
 ## Name shown in the inventory.
 @export var display_name: String = "Tool"

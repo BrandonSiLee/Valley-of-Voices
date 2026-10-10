@@ -10,7 +10,7 @@ extends RefCounted
 ##
 ## RefCounted = a plain object that frees itself when nothing uses it.
 ## It isn't a Node, so it doesn't live in the scene tree.
-## Vault: wiki/11 Code/gear/tool_box/inventory.gd
+## Vault: wiki/2 Building It/Code/gear/tool_box/inventory.gd
 
 ## Emitted after anything changes, so the screen knows to redraw.
 signal changed
