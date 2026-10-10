@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemData" format=3]
+
+[ext_resource type="Script" path="res://items/item_data.gd" id="1_item_data"]
+
+[resource]
+script = ExtResource("1_item_data")
+display_name = "Flashlight"
+grid_size = Vector2i(1, 2)
+color = Color(0.72, 0.6, 0.18, 1)
+description = "A plastic torch. Light for the dark."

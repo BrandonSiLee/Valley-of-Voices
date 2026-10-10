@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemData" format=3]
+
+[ext_resource type="Script" path="res://items/item_data.gd" id="1_item_data"]
+
+[resource]
+script = ExtResource("1_item_data")
+display_name = "Walkie-Talkie"
+grid_size = Vector2i(1, 2)
+color = Color(0.24, 0.33, 0.26, 1)
+description = "Four-channel radio. Hold left click to talk (once it's built)."

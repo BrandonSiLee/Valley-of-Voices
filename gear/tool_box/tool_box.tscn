@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dof2fy8gp24pd"]
+
+[ext_resource type="Script" uid="uid://dftmylqr4fx0a" path="res://gear/tool_box/tool_box.gd" id="1_tool_box"]
+[ext_resource type="PackedScene" uid="uid://by30wbvu2ofb6" path="res://gear/tool_box/tool_box_model.tscn" id="2_model"]
+[ext_resource type="Script" uid="uid://dmw47gputxv4l" path="res://gear/tool_box/ui/inventory_ui.gd" id="3_inventory_ui"]
+
+[node name="ToolBox" type="Node3D" unique_id=1031604221]
+script = ExtResource("1_tool_box")
+
+[node name="Model" parent="." unique_id=1430156815 instance=ExtResource("2_model")]
+transform = Transform3D(0.8, 0, -6.9938224e-08, 0, 0.8, 0, 6.9938224e-08, 0, 0.8, 0, 0.85, 0.46)
+
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=1565399116]
+layer = 10
+
+[node name="InventoryUI" type="Control" parent="UILayer" unique_id=242276240]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_inventory_ui")

@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://bxy5a8bcn0kl7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_metal"]
+albedo_color = Color(0.22, 0.32, 0.2, 1)
+metallic = 0.6
+roughness = 0.55
+
+[sub_resource type="BoxMesh" id="BoxMesh_body"]
+material = SubResource("StandardMaterial3D_metal")
+size = Vector3(0.5, 0.22, 0.24)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tray"]
+albedo_color = Color(0.09, 0.14, 0.08, 1)
+roughness = 0.9
+
+[sub_resource type="BoxMesh" id="BoxMesh_tray"]
+material = SubResource("StandardMaterial3D_tray")
+size = Vector3(0.46, 0.004, 0.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lid"]
+material = SubResource("StandardMaterial3D_metal")
+size = Vector3(0.51, 0.03, 0.25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_handle"]
+albedo_color = Color(0.12, 0.12, 0.12, 1)
+metallic = 0.8
+roughness = 0.4
+
+[sub_resource type="BoxMesh" id="BoxMesh_handle"]
+material = SubResource("StandardMaterial3D_handle")
+size = Vector3(0.18, 0.03, 0.03)
+
+[node name="ToolBoxModelPlaceholder" type="Node3D" unique_id=1982942902]
+
+[node name="Body" type="MeshInstance3D" parent="." unique_id=1437545998]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11, 0)
+mesh = SubResource("BoxMesh_body")
+
+[node name="Tray" type="MeshInstance3D" parent="." unique_id=2097069806]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.222, 0)
+mesh = SubResource("BoxMesh_tray")
+
+[node name="LidHinge" type="Node3D" parent="." unique_id=1007230411]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22, -0.12)
+
+[node name="Lid" type="MeshInstance3D" parent="LidHinge" unique_id=736142210]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.015, 0.125)
+mesh = SubResource("BoxMesh_lid")
+
+[node name="Handle" type="MeshInstance3D" parent="LidHinge" unique_id=329959735]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.045, 0.125)
+mesh = SubResource("BoxMesh_handle")

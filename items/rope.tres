@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemData" format=3]
+
+[ext_resource type="Script" path="res://items/item_data.gd" id="1_item_data"]
+
+[resource]
+script = ExtResource("1_item_data")
+display_name = "Rope"
+grid_size = Vector2i(2, 2)
+color = Color(0.6, 0.52, 0.36, 1)
+description = "A coil of rope. Found on the ground: look at it and press E."

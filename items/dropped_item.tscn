@@ -1,0 +1,7 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://items/dropped_item.gd" id="1_dropped_item"]
+
+[node name="DroppedItem" type="RigidBody3D"]
+mass = 2.0
+script = ExtResource("1_dropped_item")

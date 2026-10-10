@@ -1,6 +1,11 @@
-[gd_scene format=3 uid="uid://t8xl4uycvtyh"]
+[gd_scene format=3 uid="uid://cn341te63l6we"]
 
-[ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://addons/proto_controller/proto_controller.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://addons/proto_controller/proto_controller.tscn" id="1_jbd7x"]
+[ext_resource type="PackedScene" uid="uid://dof2fy8gp24pd" path="res://gear/tool_box/tool_box.tscn" id="2_tool_box"]
+[ext_resource type="Script" uid="uid://bfcpyyvrh5j2i" path="res://player/interactor.gd" id="3_interactor"]
+[ext_resource type="PackedScene" uid="uid://d33tritprpquv" path="res://gear/tool_box/model/metal_toolbox.glb" id="4_7mycd"]
+[ext_resource type="PackedScene" path="res://items/dropped_item.tscn" id="4_dropped_item"]
+[ext_resource type="Resource" path="res://items/rope.tres" id="5_rope"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xc3wn"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -46,5 +51,17 @@ operation = 2
 radius = 6.168457
 height = 5.635742
 
-[node name="ProtoController" parent="." unique_id=941013398 instance=ExtResource("1_ig7tw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.10857, 0.14500761, 8.455975)
+[node name="ProtoController" parent="." unique_id=941013398 instance=ExtResource("1_jbd7x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.10857, 0.14500761, 0.4180045)
+
+[node name="ToolBox" parent="ProtoController" unique_id=391422480 instance=ExtResource("2_tool_box")]
+
+[node name="Interactor" type="Node" parent="ProtoController" unique_id=1237967396]
+script = ExtResource("3_interactor")
+
+[node name="VoV_ToolBox" parent="ProtoController" unique_id=432203627 instance=ExtResource("4_7mycd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06982207, 1.5679137, -0.83071697)
+
+[node name="RopeOnGround" parent="." unique_id=342102555 instance=ExtResource("4_dropped_item")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1, 0.6, -1.6)
+item = ExtResource("5_rope")

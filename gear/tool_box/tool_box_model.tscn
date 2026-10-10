@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://by30wbvu2ofb6"]
+
+[ext_resource type="PackedScene" uid="uid://d33tritprpquv" path="res://gear/tool_box/model/metal_toolbox.glb" id="1_model"]
+
+[node name="ToolBoxModel" unique_id=1296779600 instance=ExtResource("1_model")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
