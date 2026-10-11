@@ -11,10 +11,13 @@ Brandon is new to programming. Be clear, friendly and specific. **Don't edit, cr
 Do this before anything else, and treat what you find as the most important part of the report.
 1. Read `C:\VALLEY OF VOICES\raw\inbox\README.md` in full. The bullet points under "Pointers go below" are Brandon's requests and rules for you. Also open any file it embeds or links (e.g. `![[some file.pdf]]`).
 2. Check `C:\VALLEY OF VOICES\raw\inbox\` for any other files besides README.md.
+   - **No design doc PDF in the inbox?** (Brandon's rule, 2026-10-11) Before continuing the routine, remind him with a clickable prompt (AskUserQuestion): "There's no design doc in `raw/inbox/`. Did your doc change since last session?" Options: **"I'll add it now"** (tell him how: Google Docs → File → Download → PDF, drag it into `raw/inbox/` in Obsidian, then say "done"; wait, then continue) · **"No changes"** (continue with the doc already in `raw/design-docs/`). Don't skip this reminder.
+   - **A doc PDF is there?** It's the newest version: say so in the report and, once he says go, swap it in (vault `CLAUDE.md` §5: overwrite `raw/design-docs/Valley of Voices - Game IP (2026-10-10).pdf` + its `.md` transcription, old copy to the Recycle Bin) and list what changed in it.
 3. Then find every page in `C:\VALLEY OF VOICES\wiki\` whose `## Brandon's notes` (or `## Brandon's notes / questions`) section has real text (not just `-`). Especially code pages in `wiki\2 Building It\Code\`: questions for you to answer.
 
-## 2. Load the vault rules
-Read `C:\VALLEY OF VOICES\CLAUDE.md` (the vault's own rules; it isn't loaded automatically). Follow its rules whenever you touch the vault today. Rules Brandon wrote in the inbox README outrank it.
+## 2. Load the vault rules and where we left off
+- Read `C:\VALLEY OF VOICES\CLAUDE.md` (the vault's own rules; it isn't loaded automatically). Follow its rules whenever you touch the vault today. Rules Brandon wrote in the inbox README outrank it.
+- Read the **latest `wrap-up | Session summary` entry** at the end of `C:\VALLEY OF VOICES\wiki\log.md` (plus any entries after it): what was decided last time and what's still open. Use its "Still open" list when suggesting today's plan.
 
 ## 3. GitHub: what changed?
 - Run `git status` and `git log --oneline -5` in the project folder.
