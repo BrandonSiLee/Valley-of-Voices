@@ -3,8 +3,12 @@
 [ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://addons/proto_controller/proto_controller.tscn" id="1_jbd7x"]
 [ext_resource type="PackedScene" uid="uid://dof2fy8gp24pd" path="res://gear/tool_box/tool_box.tscn" id="2_tool_box"]
 [ext_resource type="Script" uid="uid://bfcpyyvrh5j2i" path="res://player/interactor.gd" id="3_interactor"]
+[ext_resource type="Script" uid="uid://vjy32sdwryk" path="res://gear/air_tank/air_tank.gd" id="4_7mycd"]
 [ext_resource type="PackedScene" path="res://items/dropped_item.tscn" id="4_dropped_item"]
+[ext_resource type="PackedScene" uid="uid://brdqa5g7xgp82" path="res://gear/air_tank/wrist_gauge.tscn" id="5_5vw27"]
 [ext_resource type="Resource" path="res://items/rope.tres" id="5_rope"]
+[ext_resource type="Script" uid="uid://clkdh40gbyk6v" path="res://player/death_fade.gd" id="6_kek77"]
+[ext_resource type="Script" uid="uid://mm2ghsculf04" path="res://gear/air_tank/bunker_air_zone.gd" id="7_272bh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xc3wn"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -17,6 +21,9 @@ sky_material = SubResource("ProceduralSkyMaterial_xc3wn")
 background_mode = 2
 sky = SubResource("Sky_jbd7x")
 glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cea73"]
+size = Vector3(6, 3, 6)
 
 [node name="Main" type="Node3D" unique_id=1994619099]
 
@@ -58,6 +65,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.10857, 0.14500761, 0.41800
 [node name="Interactor" type="Node" parent="ProtoController" unique_id=1237967396]
 script = ExtResource("3_interactor")
 
+[node name="AirTank" type="Node" parent="ProtoController" unique_id=17849046]
+script = ExtResource("4_7mycd")
+
+[node name="WristGauge" parent="ProtoController" unique_id=1366314374 instance=ExtResource("5_5vw27")]
+
+[node name="DeathLayer" type="CanvasLayer" parent="ProtoController" unique_id=966450579]
+
+[node name="DeathFade" type="ColorRect" parent="ProtoController/DeathLayer" unique_id=874928296]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_kek77")
+
 [node name="RopeOnGround" parent="." unique_id=342102555 instance=ExtResource("4_dropped_item")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1, 0.6, -1.6)
 item = ExtResource("5_rope")
+
+[node name="BunkerAirZone" type="Area3D" parent="." unique_id=653543204]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 1.5, 0)
+script = ExtResource("7_272bh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BunkerAirZone" unique_id=1208353231]
+shape = SubResource("BoxShape3D_cea73")
