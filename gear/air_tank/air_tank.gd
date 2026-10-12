@@ -13,8 +13,10 @@ extends Node
 ## How long a full tank lasts, in seconds (480 = 8 minutes).
 ## Set it to something small like 20 in the Inspector to test quickly.
 @export var tank_seconds: float = 480.0
-## How much one Filter Cartridge adds, in seconds (240 = 4 minutes).
-@export var filter_seconds: float = 240.0
+# (How much a Filter Cartridge adds is NOT set here: each filter item says it
+# itself, in its .tres file → ItemData.clean_air_seconds.)
+## How many real seconds a filter's air takes to flow into the tank.
+@export var filter_rise_seconds: float = 5.0
 ## Inside the bunker: how many seconds it takes to refill an EMPTY tank to full.
 ## Smaller = faster refill.
 @export var bunker_refill_seconds: float = 120.0
@@ -33,7 +35,7 @@ var _bunker_zones: int = 0
 func _ready() -> void:
 	# Build the rules with the numbers from the Inspector.
 	air = CleanAir.new(tank_seconds)
-	air.filter_seconds = filter_seconds
+	air.filter_rise_seconds = filter_rise_seconds
 	air.ran_out.connect(_on_air_ran_out)
 
 
@@ -48,6 +50,8 @@ func _process(delta: float) -> void:
 		air.refill(air.max_seconds / maxf(bunker_refill_seconds, 0.1) * delta)
 	else:
 		air.breathe(delta)
+	# A clicked-in filter's air arrives a little each frame (inside or outside).
+	air.flow_filter_air(delta)
 	if debug_print:
 		_print_timer += delta
 		if _print_timer >= 1.0:

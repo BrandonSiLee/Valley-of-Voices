@@ -22,3 +22,8 @@ extends Resource
 ## Optional 3D scene to show when the item lies on the ground.
 ## Leave empty and a plain box in the item's colour is used instead.
 @export var world_scene: PackedScene
+
+## How many seconds of Clean Air this item gives when you use it
+## (240 = 4 minutes). Only Filter Cartridges set this; every other tool
+## keeps 0, which means "this can't fill your tank".
+@export var clean_air_seconds: float = 0.0

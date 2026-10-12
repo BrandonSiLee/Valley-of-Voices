@@ -8,7 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://brdqa5g7xgp82" path="res://gear/air_tank/wrist_gauge.tscn" id="5_5vw27"]
 [ext_resource type="Resource" path="res://items/rope.tres" id="5_rope"]
 [ext_resource type="Script" uid="uid://clkdh40gbyk6v" path="res://player/death_fade.gd" id="6_kek77"]
+[ext_resource type="Script" uid="uid://blqw345t1veol" path="res://player/item_user.gd" id="7_4c57u"]
 [ext_resource type="Script" uid="uid://mm2ghsculf04" path="res://gear/air_tank/bunker_air_zone.gd" id="7_272bh"]
+[ext_resource type="Resource" uid="uid://cfh3bfaxkqym3" path="res://items/filter_cartridge.tres" id="10_efxa6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xc3wn"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -80,9 +82,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("6_kek77")
 
+[node name="ItemUser" type="Node" parent="ProtoController" unique_id=173700164]
+script = ExtResource("7_4c57u")
+
 [node name="RopeOnGround" parent="." unique_id=342102555 instance=ExtResource("4_dropped_item")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1, 0.6, -1.6)
 item = ExtResource("5_rope")
+
+[node name="FilterOnGround" parent="." unique_id=851615985 instance=ExtResource("4_dropped_item")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.6, -1.6)
+item = ExtResource("10_efxa6")
 
 [node name="BunkerAirZone" type="Area3D" parent="." unique_id=653543204]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 1.5, 0)

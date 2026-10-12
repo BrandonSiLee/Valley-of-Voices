@@ -3,8 +3,8 @@ extends RefCounted
 ## The RULES of your Clean Air. No visuals here at all.
 ##
 ## Clean Air is your health bar AND your clock: it drains while you breathe
-## on the surface, the bunker refills it, a Filter Cartridge adds 4 minutes,
-## and you can lend some to a teammate. At 0 you "run out".
+## on the surface, the bunker refills it, a Filter Cartridge's air flows in
+## over a few seconds, and you can lend some to a teammate. At 0 you "run out".
 ## Air is counted in SECONDS of breathing, so "480" simply means 8 minutes.
 ## The tank on your back (air_tank.gd) and the wrist gauge only USE this
 ## script. Keeping the rules here means they're easy to test and easy to sync
@@ -18,12 +18,24 @@ signal changed
 ## Emitted once, at the moment the tank hits zero.
 signal ran_out
 
+## A normal Filter Cartridge, in seconds (240 = 4 minutes). Only used when
+## use_filter() is called without a number. The real amount comes from the
+## item itself (ItemData.clean_air_seconds), so a bigger filter needs no new code.
+const DEFAULT_FILTER_SECONDS := 240.0
+
 ## How much a full tank holds, in seconds (480 = 8 minutes).
 var max_seconds: float
 ## How much is left right now, in seconds.
 var seconds_left: float
-## How much one Filter Cartridge adds, in seconds (240 = 4 minutes).
-var filter_seconds: float = 240.0
+## How long a filter's air takes to flow into the tank, in real seconds.
+## (Brandon, 2026-10-12: "it quickly rises", not an instant jump.)
+var filter_rise_seconds: float = 5.0
+## Filter air that's clicked in but hasn't reached the tank yet, in seconds of air.
+var incoming_seconds: float = 0.0
+
+# How fast the incoming air flows, in seconds of air per real second.
+# e.g. 240 s of air over 5 real seconds = 48 per second.
+var _flow_rate: float = 0.0
 
 
 ## Runs when you write CleanAir.new(...). A new tank always starts full.
@@ -46,13 +58,38 @@ func refill(seconds: float) -> void:
 	_set_seconds(seconds_left + seconds)
 
 
-## Click in a Filter Cartridge. Returns false (filter NOT used up) if the
-## tank is already full, so the player doesn't waste it.
-func use_filter() -> bool:
-	if seconds_left >= max_seconds:
+## Click in a Filter Cartridge worth `seconds` of air. The air doesn't arrive
+## at once: it's queued in `incoming_seconds` and flow_filter_air() lets it in
+## over `filter_rise_seconds`. Returns true if the filter was used up.
+## A full tank still takes it (Brandon, 2026-10-12: your choice, your loss):
+## the extra air is simply wasted. Returns false (filter NOT used) if it gives
+## no air at all (e.g. a hammer) or if you've collapsed (only a teammate can
+## save you then).
+func use_filter(seconds: float = DEFAULT_FILTER_SECONDS) -> bool:
+	if seconds <= 0.0 or is_empty():
 		return false
-	refill(filter_seconds)
+	incoming_seconds += seconds
+	# Everything still incoming (this filter + any left from the last one)
+	# finishes flowing in `filter_rise_seconds` from now.
+	_flow_rate = incoming_seconds / maxf(filter_rise_seconds, 0.01)
 	return true
+
+
+## Let a bit of the clicked-in filter air into the tank. The tank calls this
+## every frame with `delta`, so the gauge needle sweeps up smoothly.
+func flow_filter_air(delta: float) -> void:
+	if incoming_seconds <= 0.0:
+		return
+	if is_empty():
+		incoming_seconds = 0.0   # you collapsed before it arrived: it's lost
+		return
+	var amount := minf(incoming_seconds, _flow_rate * delta)   # never more than what's left
+	incoming_seconds -= amount
+	refill(amount)   # refill() stops at full, so on a full tank it's wasted
+
+
+func is_full() -> bool:
+	return seconds_left >= max_seconds
 
 
 ## Give up to `seconds` of your air to `other`. You can't give more than you

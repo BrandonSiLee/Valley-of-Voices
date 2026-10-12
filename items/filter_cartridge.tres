@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://cfh3bfaxkqym3"]
+
+[ext_resource type="Script" uid="uid://dgwwpm1r1oauv" path="res://items/item_data.gd" id="1_nfroy"]
+
+[resource]
+script = ExtResource("1_nfroy")
+display_name = "Filter Cartridge"
+color = Color(0.99999994, 0.25010592, 0.6470217, 1)
+clean_air_seconds = 240.0
+metadata/_custom_type_script = "uid://dgwwpm1r1oauv"
