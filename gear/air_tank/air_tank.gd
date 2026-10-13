@@ -12,7 +12,7 @@ extends Node
 
 ## How long a full tank lasts, in seconds (480 = 8 minutes).
 ## Set it to something small like 20 in the Inspector to test quickly.
-@export var tank_seconds: float = 480.0
+@export var tank_seconds: float = 15.0
 # (How much a Filter Cartridge adds is NOT set here: each filter item says it
 # itself, in its .tres file → ItemData.clean_air_seconds.)
 ## How many real seconds a filter's air takes to flow into the tank.
