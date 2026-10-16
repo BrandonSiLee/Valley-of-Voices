@@ -28,6 +28,7 @@ extends Node
 var _player: Node
 var _backpack: Backpack
 var _air_tank: AirTank
+var _status: StatusEffects   # optional: where we report "HANDS FULL" / "HEAVY LOAD"
 ## The player's own settings, remembered at the start. We only ever take things
 ## AWAY (sprint, speed); we never go above what you set yourself.
 var _sprint_setting := false
@@ -39,6 +40,7 @@ func _ready() -> void:
 	_player = get_parent()
 	_backpack = _player.get_node_or_null("Backpack") as Backpack
 	_air_tank = _player.get_node_or_null("AirTank") as AirTank
+	_status = _player.get_node_or_null("StatusEffects") as StatusEffects
 	if _backpack == null:
 		push_error("CarryLimits: needs a Backpack next to it under the player.")
 	if "can_sprint" in _player:
@@ -65,6 +67,21 @@ func _physics_process(_delta: float) -> void:
 		_player.set("sprint_speed", _sprint_speed * speed)
 	if _air_tank != null:
 		_air_tank.breath_rate = breath_multiplier(loaded, heaviest_breathing)
+	_report_status(inventory, loaded)
+
+
+# Tell the wrist monitor's status list what's going on (if there is one).
+func _report_status(inventory: Inventory, loaded: float) -> void:
+	if _status == null:
+		return
+	if inventory.is_holding_two_handed():
+		_status.set_effect(&"hands_full", "HANDS FULL: NO SPRINT")
+	else:
+		_status.clear_effect(&"hands_full")
+	if loaded > 0.0:
+		_status.set_effect(&"heavy_load", "HEAVY LOAD: AIR x%.2f" % breath_multiplier(loaded, heaviest_breathing))
+	else:
+		_status.clear_effect(&"heavy_load")
 
 
 ## For the wrist gauge: "may I raise the arm right now?"

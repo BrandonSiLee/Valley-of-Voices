@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://ccbx2usb4ly83"]
+
+[ext_resource type="Script" uid="uid://yw0fhvs0ifga" path="res://tests/wrist_test.gd" id="1_aivy1"]
+
+[node name="WristTest" type="Node3D" unique_id=205785045]
+script = ExtResource("1_aivy1")

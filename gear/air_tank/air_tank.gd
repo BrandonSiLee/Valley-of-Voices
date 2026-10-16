@@ -31,6 +31,7 @@ var air: CleanAir
 var breath_rate: float = 1.0
 
 var _print_timer: float = 0.0
+var _status: StatusEffects   # optional: the wrist monitor's status list (a sibling)
 # How many bunker zones we're standing in right now. A number instead of
 # true/false, so two zones that overlap at a doorway can't confuse us.
 var _bunker_zones: int = 0
@@ -41,6 +42,8 @@ func _ready() -> void:
 	air = CleanAir.new(tank_seconds)
 	air.filter_rise_seconds = filter_rise_seconds
 	air.ran_out.connect(_on_air_ran_out)
+	if get_parent() != null:
+		_status = get_parent().get_node_or_null("StatusEffects") as StatusEffects
 
 
 # _process runs every frame. `delta` = seconds since the last frame
@@ -55,6 +58,7 @@ func _process(delta: float) -> void:
 	else:
 		# Breathing harder (heavy pack) and dawn (poison air) both use more air per second.
 		air.breathe(delta * breath_rate * _time_of_day_multiplier())
+	_report_status()
 	# A clicked-in filter's air arrives a little each frame (inside or outside).
 	air.flow_filter_air(delta)
 	if debug_print:
@@ -88,6 +92,18 @@ func _time_of_day_multiplier() -> float:
 		return 1.0
 	# call() looks the function up by NAME, because Godot only knows this is "a Node".
 	return float(game_clock.call("air_drain_multiplier"))
+
+
+## Report "TOXIC AIR" to the wrist monitor's status list while dawn is burning
+## your air on the surface. (In the bunker you're safe, so it goes away.)
+func _report_status() -> void:
+	if _status == null:
+		return
+	var multiplier := _time_of_day_multiplier()
+	if multiplier > 1.0 and not is_in_bunker():
+		_status.set_effect(&"toxic_air", "TOXIC AIR: x%.0f DRAIN" % multiplier)
+	else:
+		_status.clear_effect(&"toxic_air")
 
 
 func _on_air_ran_out() -> void:
