@@ -91,7 +91,7 @@ script = ExtResource("7_4c57u")
 [node name="CarryLimits" type="Node" parent="ProtoController" unique_id=812691776]
 script = ExtResource("8_dg77c")
 
-[node name="StatusEffect" type="Node" parent="ProtoController" unique_id=74572955]
+[node name="StatusEffects" type="Node" parent="ProtoController" unique_id=74572955]
 script = ExtResource("9_w48qg")
 
 [node name="RopeOnGround" parent="." unique_id=342102555 instance=ExtResource("4_dropped_item")]
