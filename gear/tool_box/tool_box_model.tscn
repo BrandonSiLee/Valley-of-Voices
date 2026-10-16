@@ -1,4 +1,0 @@
-[gd_scene format=3 uid="uid://dlw2ovcatk0x"]
-
-[node name="ToolBoxModel" unique_id=1296779600]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
