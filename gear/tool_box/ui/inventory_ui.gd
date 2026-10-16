@@ -1,6 +1,6 @@
 class_name InventoryUI
 extends Control
-## The inventory SCREEN you see after diving into the Tool Box.
+## The inventory SCREEN you see after looking into your Backpack.
 ##
 ## Its only jobs: SHOW the Inventory, and turn mouse actions into requests
 ## ("move this there", "drop this"). The rules live in inventory.gd.
@@ -20,7 +20,7 @@ const COL_TEXT := Color("e2dccd")
 const COL_DIM_TEXT := Color("9a9384")
 
 var inventory: Inventory
-var tool_box: ToolBox
+var backpack: Backpack
 
 var _grid: BoxGrid
 var _hands_slot: EquipSlot
@@ -35,10 +35,10 @@ var _status: Label
 var _fade: Tween
 
 
-## Called once by the Tool Box: "here's the inventory you show".
-func setup(new_inventory: Inventory, owner_box: ToolBox) -> void:
+## Called once by the Backpack: "here's the inventory you show".
+func setup(new_inventory: Inventory, owner_pack: Backpack) -> void:
 	inventory = new_inventory
-	tool_box = owner_box
+	backpack = owner_pack
 	_build_layout()
 	inventory.changed.connect(refresh)   # redraw whenever the rules say something changed
 	refresh()
@@ -63,7 +63,7 @@ func request_move(from: Dictionary, to: Dictionary) -> void:
 
 
 func request_drop(from: Dictionary) -> void:
-	tool_box.drop_item(from)
+	backpack.drop_item(from)
 
 
 ## Fill the inspection bay with the item under the mouse.
@@ -87,7 +87,7 @@ func show_status(text: String) -> void:
 	_status.text = text
 
 
-# --- Fading in and out (called by the Tool Box) --------------------------------
+# --- Fading in and out (called by the Backpack) --------------------------------
 
 func show_animated(seconds := 0.2) -> void:
 	visible = true

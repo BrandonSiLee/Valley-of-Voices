@@ -23,10 +23,10 @@ func _ready() -> void:
 
 ## Called by the player's Interactor when you look at this and press E.
 func interact(player: Node) -> void:
-	var tool_box := player.get_node_or_null("ToolBox") as ToolBox
-	if tool_box == null:
+	var backpack := player.get_node_or_null("Backpack") as Backpack
+	if backpack == null:
 		return
-	if tool_box.pick_up(item):
+	if backpack.pick_up(item):
 		queue_free()    # it's in your hands now, so remove it from the world
 
 

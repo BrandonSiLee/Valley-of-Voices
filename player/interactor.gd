@@ -25,9 +25,9 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if not event.is_action_pressed("interact"):
 		return
-	# Don't grab things from the world while you're looking into the tool box.
-	var tool_box := _player.get_node_or_null("ToolBox") as ToolBox
-	if tool_box != null and tool_box.state != ToolBox.State.CLOSED:
+	# Don't grab things from the world while you're looking into your backpack.
+	var backpack := _player.get_node_or_null("Backpack") as Backpack
+	if backpack != null and backpack.is_busy():
 		return
 
 	var target := _find_target()

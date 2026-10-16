@@ -15,7 +15,7 @@ extends Node
 ## so the code can't misspell "wasted" as "wastd".
 enum UseResult { USED, WASTED, EMPTY_HANDS, CANT_USE }
 
-var _tool_box: ToolBox
+var _backpack: Backpack
 var _air_tank: AirTank
 
 
@@ -23,10 +23,10 @@ func _ready() -> void:
 	# Our siblings under the player. get_node_or_null = "find it, or give me
 	# null instead of crashing", so a missing node gives a clear error below.
 	var player := get_parent()
-	_tool_box = player.get_node_or_null("ToolBox") as ToolBox
+	_backpack = player.get_node_or_null("Backpack") as Backpack
 	_air_tank = player.get_node_or_null("AirTank") as AirTank
-	if _tool_box == null or _air_tank == null:
-		push_error("ItemUser: needs ToolBox and AirTank next to it under the player.")
+	if _backpack == null or _air_tank == null:
+		push_error("ItemUser: needs Backpack and AirTank next to it under the player.")
 	if not InputMap.has_action("use_item"):
 		push_error("ItemUser: add an Input Map action called 'use_item' (key R).")
 
@@ -34,17 +34,17 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if not event.is_action_pressed("use_item"):
 		return
-	if _tool_box == null or _air_tank == null:
+	if _backpack == null or _air_tank == null:
 		return
-	# Not while you're looking into the tool box (same rule as pressing E).
-	if _tool_box.state != ToolBox.State.CLOSED:
+	# Not while you're looking into your backpack (same rule as pressing E).
+	if _backpack.is_busy():
 		return
 	# Out of air = you've collapsed. Only a teammate can save you now (reviving).
 	if _air_tank.air.is_empty():
 		return
 
-	var item := _tool_box.inventory.hands   # remember it: it may be used up below
-	var result := use_held_item(_tool_box.inventory, _air_tank.air)
+	var item := _backpack.inventory.hands   # remember it: it may be used up below
+	var result := use_held_item(_backpack.inventory, _air_tank.air)
 	_tell_player(result, item)
 	get_viewport().set_input_as_handled()
 
