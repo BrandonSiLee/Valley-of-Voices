@@ -1,7 +1,7 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://d2cbayr2fo05e"]
 
-[ext_resource type="Script" path="res://items/dropped_item.gd" id="1_dropped_item"]
+[ext_resource type="Script" uid="uid://c2uxbqmjoeak2" path="res://items/dropped_item.gd" id="1_dropped_item"]
 
-[node name="DroppedItem" type="RigidBody3D"]
+[node name="DroppedItem" type="RigidBody3D" unique_id=1298320343]
 mass = 2.0
 script = ExtResource("1_dropped_item")

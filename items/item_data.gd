@@ -10,8 +10,17 @@ extends Resource
 ## Name shown in the inventory.
 @export var display_name: String = "Tool"
 
-## How many Tool Box grid cells it covers: x = columns (width), y = rows (height).
+## How many backpack grid cells it covers: x = columns (width), y = rows (height).
 @export var grid_size: Vector2i = Vector2i(1, 1)
+
+## Tick this for big things you carry with BOTH hands (an engine, a big radio).
+## Holding one means no sprinting and no wrist device (Brandon, 2026-10-15).
+## Small items leave this off: you can still sprint and check your wrist.
+@export var two_handed: bool = false
+
+## How heavy it is, in kilograms. Everything you carry adds up: a heavy load
+## makes you slower and makes you breathe harder (more Clean Air used).
+@export var weight_kg: float = 1.0
 
 ## Placeholder colour, used until the item has a real icon and model.
 @export var color: Color = Color(0.6, 0.6, 0.6)

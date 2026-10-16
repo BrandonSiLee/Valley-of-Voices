@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://b5dcjqobbwl2w"]
+
+[ext_resource type="Script" uid="uid://wtbfin5tbk11" path="res://gear/backpack/backpack.gd" id="1_0l67b"]
+[ext_resource type="Script" uid="uid://dmw47gputxv4l" path="res://gear/tool_box/ui/inventory_ui.gd" id="2_f7jo7"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_cea73"]
+size = Vector3(0.4, 0.55, 0.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_n3wst"]
+size = Vector3(0.42, 0.03, 0.26)
+
+[node name="Backpack" type="Node3D" unique_id=1060636201]
+script = ExtResource("1_0l67b")
+
+[node name="Model" type="Node3D" parent="." unique_id=250906046]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0.35)
+
+[node name="Body" type="MeshInstance3D" parent="Model" unique_id=1284299764]
+mesh = SubResource("BoxMesh_cea73")
+
+[node name="FlapHinge" type="Node3D" parent="Model" unique_id=1921205700]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.28, 0.12)
+
+[node name="Flap" type="MeshInstance3D" parent="Model/FlapHinge" unique_id=144355901]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.13)
+mesh = SubResource("BoxMesh_n3wst")
+
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=1422063010]
+layer = 10
+
+[node name="InventoryUI" type="Control" parent="UILayer" unique_id=1679842170]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_f7jo7")

@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_nfroy")
 display_name = "Filter Cartridge"
+weight_kg = 0.5
 color = Color(0.99999994, 0.25010592, 0.6470217, 1)
 clean_air_seconds = 240.0
 metadata/_custom_type_script = "uid://dgwwpm1r1oauv"

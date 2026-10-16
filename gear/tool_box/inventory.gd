@@ -196,6 +196,25 @@ func drop(from: Dictionary) -> ItemData:
 	return item
 
 
+## True if you're holding a big item that needs both hands.
+## (player/carry_limits.gd turns this into "no sprinting, no wrist".)
+func is_holding_two_handed() -> bool:
+	return hands != null and hands.two_handed
+
+
+## Everything you carry added up, in kilograms: hands + belt + box.
+func total_weight() -> float:
+	var total := 0.0
+	if hands != null:
+		total += hands.weight_kg
+	for item in belt:
+		if item != null:
+			total += item.weight_kg
+	for entry in box:
+		total += entry.item.weight_kg
+	return total
+
+
 ## True if this item is anywhere: hands, belt or box.
 ## (Quests like "bring the hammer" can use this.)
 func has_item(item: ItemData) -> bool:

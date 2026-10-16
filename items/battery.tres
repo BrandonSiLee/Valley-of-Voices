@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="ItemData" format=3]
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://bhx1mqlx7trld"]
 
-[ext_resource type="Script" path="res://items/item_data.gd" id="1_item_data"]
+[ext_resource type="Script" uid="uid://dgwwpm1r1oauv" path="res://items/item_data.gd" id="1_item_data"]
 
 [resource]
 script = ExtResource("1_item_data")
 display_name = "Battery"
-grid_size = Vector2i(1, 1)
+weight_kg = 0.5
 color = Color(0.3, 0.42, 0.6, 1)
 description = "Spare battery. Small: one cell."

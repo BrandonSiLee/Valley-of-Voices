@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cn341te63l6we"]
 
 [ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://addons/proto_controller/proto_controller.tscn" id="1_jbd7x"]
-[ext_resource type="PackedScene" uid="uid://dof2fy8gp24pd" path="res://gear/tool_box/tool_box.tscn" id="2_tool_box"]
 [ext_resource type="Script" uid="uid://bfcpyyvrh5j2i" path="res://player/interactor.gd" id="3_interactor"]
 [ext_resource type="Script" uid="uid://vjy32sdwryk" path="res://gear/air_tank/air_tank.gd" id="4_7mycd"]
 [ext_resource type="PackedScene" path="res://items/dropped_item.tscn" id="4_dropped_item"]
@@ -10,7 +9,10 @@
 [ext_resource type="Script" uid="uid://clkdh40gbyk6v" path="res://player/death_fade.gd" id="6_kek77"]
 [ext_resource type="Script" uid="uid://blqw345t1veol" path="res://player/item_user.gd" id="7_4c57u"]
 [ext_resource type="Script" uid="uid://mm2ghsculf04" path="res://gear/air_tank/bunker_air_zone.gd" id="7_272bh"]
+[ext_resource type="PackedScene" uid="uid://b5dcjqobbwl2w" path="res://gear/backpack/backpack.tscn" id="7_efxa6"]
+[ext_resource type="Script" uid="uid://chpdxwlysb02u" path="res://player/carry_limits.gd" id="8_dg77c"]
 [ext_resource type="Resource" uid="uid://cfh3bfaxkqym3" path="res://items/filter_cartridge.tres" id="10_efxa6"]
+[ext_resource type="Resource" uid="uid://dok3ai71x5qbm" path="res://items/test_crate.tres" id="11_ycdy4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xc3wn"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -62,8 +64,6 @@ height = 5.635742
 [node name="ProtoController" parent="." unique_id=941013398 instance=ExtResource("1_jbd7x")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10.659269, 0.14500761, 0.031416416)
 
-[node name="ToolBox" parent="ProtoController" unique_id=391422480 instance=ExtResource("2_tool_box")]
-
 [node name="Interactor" type="Node" parent="ProtoController" unique_id=1237967396]
 script = ExtResource("3_interactor")
 
@@ -85,9 +85,18 @@ script = ExtResource("6_kek77")
 [node name="ItemUser" type="Node" parent="ProtoController" unique_id=173700164]
 script = ExtResource("7_4c57u")
 
+[node name="Backpack" parent="ProtoController" unique_id=1060636201 instance=ExtResource("7_efxa6")]
+
+[node name="CarryLimits" type="Node" parent="ProtoController" unique_id=812691776]
+script = ExtResource("8_dg77c")
+
 [node name="RopeOnGround" parent="." unique_id=342102555 instance=ExtResource("4_dropped_item")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1, 0.6, -1.6)
 item = ExtResource("5_rope")
+
+[node name="CrateOnGround" parent="." unique_id=766947966 instance=ExtResource("4_dropped_item")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1, 0.6, -2.447497)
+item = ExtResource("11_ycdy4")
 
 [node name="FilterOnGround" parent="." unique_id=851615985 instance=ExtResource("4_dropped_item")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.6, -1.6)

@@ -25,6 +25,10 @@ extends Node
 
 ## The rules object. Other scripts read it, e.g. air_tank.air.get_percent().
 var air: CleanAir
+## How hard you're breathing: 1.0 = normal, 1.5 = air drains 1.5x as fast.
+## Set from outside every frame (player/carry_limits.gd: a heavy pack).
+## Dawn is added on top of this (see _time_of_day_multiplier()).
+var breath_rate: float = 1.0
 
 var _print_timer: float = 0.0
 # How many bunker zones we're standing in right now. A number instead of
@@ -49,14 +53,16 @@ func _process(delta: float) -> void:
 		# maxf(..., 0.1) stops a crash if someone types 0 in the Inspector.
 		air.refill(air.max_seconds / maxf(bunker_refill_seconds, 0.1) * delta)
 	else:
-		air.breathe(delta)
+		# Breathing harder (heavy pack) and dawn (poison air) both use more air per second.
+		air.breathe(delta * breath_rate * _time_of_day_multiplier())
 	# A clicked-in filter's air arrives a little each frame (inside or outside).
 	air.flow_filter_air(delta)
 	if debug_print:
 		_print_timer += delta
 		if _print_timer >= 1.0:
 			_print_timer = 0.0
-			var where := "bunker, refilling" if is_in_bunker() else "surface"
+			# Show the TOTAL: heavy pack x dawn (not just the pack, which hid dawn).
+			var where := "bunker, refilling" if is_in_bunker() else "surface, breathing x%.2f" % (breath_rate * _time_of_day_multiplier())
 			print("Clean Air: %d%%  (%s left, %s)" % [roundi(air.get_percent() * 100.0), _as_clock(air.seconds_left), where])
 
 
@@ -72,6 +78,16 @@ func leave_bunker() -> void:
 
 func is_in_bunker() -> bool:
 	return _bunker_zones > 0
+
+
+## Dawn makes the air drain faster. Asks the GameClock autoload; if it isn't
+## registered (e.g. in a test scene), the time of day changes nothing.
+func _time_of_day_multiplier() -> float:
+	var game_clock := get_node_or_null("/root/GameClock")
+	if game_clock == null or not game_clock.has_method("air_drain_multiplier"):
+		return 1.0
+	# call() looks the function up by NAME, because Godot only knows this is "a Node".
+	return float(game_clock.call("air_drain_multiplier"))
 
 
 func _on_air_ran_out() -> void:

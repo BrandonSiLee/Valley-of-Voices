@@ -5,9 +5,11 @@ extends Node3D
 ## It doesn't know any air rules: it just ASKS the AirTank how full it is and
 ## turns the needle to match (full = right, empty = left). When air is low the
 ## needle shakes, so you feel the panic.
-## It follows the camera by itself, so it can sit next to ToolBox under
+## It follows the camera by itself, so it can sit next to the Backpack under
 ## ProtoController without touching the addon: main.tscn → ProtoController →
 ## WristGauge (an instance of wrist_gauge.tscn).
+## Carrying something with both hands? Then the arm won't come up: it asks
+## CarryLimits (player/carry_limits.gd) first.
 ## Vault: wiki/2 Building It/Code/gear/air_tank/wrist_gauge.gd
 
 ## The input action that raises the wrist (Project Settings → Input Map).
@@ -39,6 +41,7 @@ const ACTION := "check_air"
 @export var raise_speed: float = 10.0
 
 var _offset: Vector3   # where the wrist is right now, between lowered and raised
+var _carry_limits: CarryLimits   # optional: without one, the wrist is always allowed
 
 
 func _ready() -> void:
@@ -47,6 +50,8 @@ func _ready() -> void:
 	_offset = lowered_offset
 	if air_tank == null:
 		air_tank = _find_air_tank()
+	if get_parent() != null:
+		_carry_limits = get_parent().get_node_or_null("CarryLimits") as CarryLimits
 	if air_tank == null:
 		push_warning("WristGauge: no AirTank found next to me, the needle won't move.")
 	if not InputMap.has_action(ACTION):
@@ -61,6 +66,9 @@ func _process(delta: float) -> void:
 # Slide towards raised (Tab held) or lowered, then stick to the camera.
 func _move_arm(delta: float) -> void:
 	var raised := InputMap.has_action(ACTION) and Input.is_action_pressed(ACTION)
+	# Both hands full? Then the arm stays down, even while Tab is held.
+	if _carry_limits != null and not _carry_limits.wrist_allowed():
+		raised = false
 	var target := raised_offset if raised else lowered_offset
 	# "Smooth follow": cover a fixed share of the remaining distance each frame.
 	# exp() keeps the speed the same on slow and fast PCs (lesson from step 3!).
