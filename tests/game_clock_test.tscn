@@ -1,3 +1,6 @@
 [gd_scene format=3 uid="uid://cpgm7uhpk5yik"]
 
+[ext_resource type="Script" uid="uid://d1maqo6ffqjy" path="res://tests/game_clock_test.gd" id="1_4epq2"]
+
 [node name="GameClockTest" type="Node3D" unique_id=15846061]
+script = ExtResource("1_4epq2")
