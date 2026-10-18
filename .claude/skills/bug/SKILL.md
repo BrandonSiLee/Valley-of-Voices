@@ -1,11 +1,11 @@
 ---
 name: bug
-description: Help Brandon find and fix a bug in Valley of Voices. Use when he says something is broken, not working, "doesn't work", there's an error or a crash, or runs /bug. Gathers the facts, finds the cause BEFORE changing anything, explains it simply, asks before fixing, then teaches him how to find it himself next time.
+description: Help Brandon find and fix a bug in Valley of Voices HIMSELF. Use when he says something is broken, not working, "doesn't work", there's an error or a crash, or runs /bug. Gathers the facts, finds the cause BEFORE suggesting anything, guides him to see it with hints, lets him make the fix, then teaches him how to find it himself next time.
 ---
 
 # Fix a bug
 
-Brandon is new to programming. Be calm and clear; bugs are normal. **Change nothing until you know the cause and Brandon says yes.**
+Brandon is new to programming and **writes and fixes his own code** (his rule, 2026-10-16). Be calm and clear; bugs are normal. **You don't edit his code.** Your job is to help him find the cause and make the fix himself.
 
 ## 1. Get the facts
 If his message doesn't already say, ask for the missing ones (in one message, as a short list), then wait:
@@ -22,15 +22,17 @@ If he says he doesn't know where to find the error, tell him: bottom of the Godo
 - Check what changed: `git status` and `git diff` in the project folder. If `git` isn't on the PATH, use GitHub Desktop's copy (search `%LOCALAPPDATA%\GitHubDesktop` for `cmd\git.exe`), or ask him to look at GitHub Desktop's Changes tab.
 - Read the scripts and scenes involved (`.tscn` files show which script is attached, node names and Inspector values). Read every file fresh; Brandon may have changed it.
 
-## 3. Find the cause, then explain it
-- Find the real cause before suggesting anything. If you can't be sure, say what you suspect and give him a `print()` to add that will prove it, then wait for the result.
-- Explain in plain words: **what went wrong**, **why** (the idea behind it, e.g. "the node path changed when you renamed the node, so `$Model` finds nothing and returns null"), and where (file:line or node).
+## 3. Find the cause (yourself first), then lead him to it
+- Find the real cause before suggesting anything, so your hints point the right way. If you can't be sure, give him a `print()` to add that will prove it, then wait for the result.
+- **Let him discover it**, one hint at a time: 1) where to look (file, function, panel), 2) what to check there ("what is `$Model` right before the error?"), 3) the idea behind it ("renaming a node breaks `$` paths"). Only say the cause outright if he's still stuck after the hints.
+- Then make sure he can say in plain words **what went wrong**, **why**, and **where** (file:line or node).
 
-## 4. Suggest the fix, ask first
-- Describe the fix and why it works. Ask: "Want me to apply it?"
-- **One-line or one-value fix:** don't apply it. Tell him the exact file, line number, what's there now and what to change it to (or the node and Inspector property). Let him do it.
-- **Scene changes** (nodes, attaching scripts, Inspector): always his job. Give exact editor steps.
-- **Bigger code fixes**, after he says yes: follow `CLAUDE.md`'s code rules. If the bug is in real logic (inventory, maths, saving), add a test in `res://tests/` that would have caught it. Update the script's vault mirror page (`Change history` + `Full code`). Never edit `addons/`. If Godot has the file open, tell him to choose **Reload**.
+## 4. He fixes it
+- Ask him how he'd fix it. If his idea works, say so; if not, hint why.
+- If he's stuck: describe the fix in plain words (which file, which line, what idea), and only as a last resort show a line or two for him to type.
+- **Scene changes** (nodes, attaching scripts, Inspector): give exact editor steps.
+- If the bug is in real logic (inventory, maths, saving), suggest he adds a test in `res://tests/` that would have caught it, and explain what it should check.
+- After his fix: update the script's vault mirror page (`Change history` + `Full code`). Never touch `addons/`.
 - Tell him how to check it's fixed (F5/F6 and what to do).
 
 ## 5. Teach him to find it himself
